@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empowering Marginal Farmers with AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background: #28a745;
+            color: white;
+            padding: 10px 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .chatbot-container {
+            width: 50%;
+            margin: auto;
+            background: url('https://source.unsplash.com/800x600/?farm,agriculture') no-repeat center center;
+            background-size: cover;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .chatbot-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #chatbotMessages {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            background: #fff;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px;
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Empowering Marginal Farmers with AI</h1>
+    </header>
+    <div class="container">
+        <section class="chatbot-container">
+            <h2>AI Chatbot</h2>
+            <div id="chatbotMessages"></div>
+            <input type="text" id="chatbotInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendChatMessage()">Send</button>
+        </section>
+    </div>
+
+    <script>
+    const apiKey =  APIKEY;
+    const apiUrl = "https://api.openai.com/v1/chat/completions";
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendChatMessage();
+            }
+        }
+
+        function sendChatMessage() {
+            var input = document.getElementById('chatbotInput');
+            var message = input.value;
+            if (message.trim() !== "") {
+                var chatbotMessages = document.getElementById('chatbotMessages');
+                var userMessage = document.createElement("p");
+                userMessage.innerHTML = "<strong>You:</strong> " + message;
+                chatbotMessages.appendChild(userMessage);
+
+                fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4o-mini",
+                        messages: [{ "role": "user", "content": message }],
+                        max_tokens: 150
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var aiResponse = document.createElement("p");
+                    aiResponse.innerHTML = "<strong>AI Assistant:</strong> " + data.choices[0].message.content;
+                    chatbotMessages.appendChild(aiResponse);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    var errorMessage = document.createElement("p");
+                    errorMessage.innerHTML = "<strong>AI Assistant:</strong> Sorry, I couldn't process your request.";
+                    chatbotMessages.appendChild(errorMessage);
+                });
+
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empowering Marginal Farmers with AI</title>
+  <style>
+    /* Basic resets */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e4be85; /* warm background */
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #4CAF50; /* green */
+      color: white;
+      padding: 10px 0;
+    }
+    header nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    header nav ul li {
+      margin: 0 15px;
+    }
+    header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+    /* Hero Section */
+    #hero {
+      background: url('data:image/jpeg;base64,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') no-repeat center center/cover;
+       background-attachment: fixed; background-size: cover; background-position: center;
+      color: rgb(138, 21, 93);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #hero h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #15139b;
+    }
+    #hero p {
+      font-size: 1.2em;
+      margin: 20px 0;
+      text-shadow: 1px 1px 3px #6e1515;
+    }
+    #hero button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      background-color: #ffcc00; /* yellow */
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #hero button:hover {
+      background-color: #e6b800;
+    }
+    /* Features Section */
+    #features {
+      background: #a0a0a08e;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      width: 300px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+    }
+    /* Demo Section */
+    #demo {
+      background: #fff;
+    }
+    .demo-container {
+      max-width: 500px;
+      margin: auto;
+      text-align: left;
+    }
+    .demo-container input[type="text"] {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    .demo-container button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    #demo-result {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    /* Resources Section */
+    #resources {
+      background: #f9f9f9;
+    }
+    .resources-container {
+      max-width: 800px;
+      margin: auto;
+      text-align: left;
+    }
+    .resource-item {
+      margin-bottom: 20px;
+    }
+    .resource-item h4 {
+      margin-bottom: 5px;
+    }
+    /* Contact Section */
+    #contact form {
+      max-width: 500px;
+      margin: auto;
+      text-align: left;
+    }
+    #contact form input,
+    #contact form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    #contact form button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    /* Chatbot Styles */
+    #chatbot {
+      display: none;
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    border: 1px solid #ccc;
+    background-color: white;
+    background-image: url('https://www.google.com/imgres?q=give%20the%20impressive%20image%20for%20chatbot&imgurl=https%3A%2F%2Fetimg.etb2bimg.com%2Fphoto%2F98621213.cms&imgrefurl=https%3A%2F%2Fhr.economictimes.indiatimes.com%2Fnews%2Fhrtech%2Ffirst-impression-of-a-fallible-human-mimic-what-hr-leaders-have-to-say-about-chatgpt%2F98621104&docid=1hHY2ybhWFpxcM&tbnid=kZpHHV0pbwrlpM&vet=12ahUKEwjK4N2dgrmMAxV1iK8BHTvrOt8QM3oECHQQAA..i&w=1200&h=900&hcb=2&ved=2ahUKEwjK4N2dgrmMAxV1iK8BHTvrOt8QM3oECHQQAA'); /* Add your image URL here */
+    background-size: cover; /* Adjust the image to cover the whole area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+    .chatbot-header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #chatbotMessages {
+    height: 300px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+  }
+  #chatbotInput {
+    width: calc(100% - 10px);
+    padding: 5px;
+  }
+    .chatbot-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+    }
+    .chatbot-input button {
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      #hero {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="conttact.html" target="_blank">Go to About Page</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1>Empowering Small Marginal Farmers</h1>
+    <p>Transforming agriculture with innovative AI-driven solutions.</p>
+    <button onclick="scrollToSection('features')">Learn More</button>
+    <button onclick="scrollToSection('contact')">Get Started</button>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Our AI-Driven Solutions</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Weather Prediction</h3>
+        <p>Accurate forecasts to help plan your farming activities.</p>
+      </div>
+      <div class="card">
+        <h3>Crop Yield Forecasts</h3>
+        <p>Data-driven insights for effective crop planning.</p>
+      </div>
+      <div class="card">
+        <h3>Market Price Tracking</h3>
+        <p>Real-time market trends to maximize your profits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo">
+    <h2>Try Our Interactive Demo</h2>
+    <div class="demo-container">
+      <label for="demoInput">Enter a crop type, e.g., "wheat":</label>
+      <input type="text" id="demoInput" placeholder="Enter crop type" />
+      <button onclick="generateRecommendation()">Get AI Recommendation</button>
+      <div id="demo-result"></div>
+    </div>
+  </section>
+
+  <!-- Educational Resources Section -->
+  <section id="resources">
+    <h2>Educational Resources</h2>
+    <div class="resources-container">
+      <div class="resource-item">
+        <h4>Video Tutorials</h4>
+        <p>Watch our guides to learn innovative farming techniques.</p>
+      </div>
+      <div class="resource-item">
+        <h4>Guides & FAQs</h4>
+        <p>Access comprehensive guides and answers to common queries.</p>
+      </div>
+    </div>
+  </section>
+    <!-- Crop Disease Detection Section -->
+  
+  <!-- Image Upload Section -->
+  <section id="plant-identification">
+      <h2>Identify a Plant</h2>
+      <input type="file" id="imageInput" accept="image/*" />
+      <button onclick="analyzeImage()">Identify Plant</button>
+      <label id="resultLabel"></label> <!-- Label to display the result -->
+  </section>
+  
+
+   <!-- Crop Disease Detection Section end  -->
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Contact us: info@example.com | Follow us on Social Media</p>
+  </footer>
+
+  <!-- Chatbot Toggle Button -->
+  <button class="chatbot-toggle"><a href="chatbot.html">chatbot</a></button>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot" id="chatbot">
+    <div class="chatbot-header" onclick="toggleChatbot()">AI Assistant</div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <p>Hi! How can I help you today?</p>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Type your message..." />
+      <button onclick="sendChatMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll to specified section
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Simulate an AI recommendation based on input data
+    function generateRecommendation() {
+  var crop = document.getElementById('demoInput').value.trim().toLowerCase();
+  var resultDiv = document.getElementById('demo-result');
+
+  if (crop === "") {
+    resultDiv.innerHTML = "<p>Please enter a valid crop type.</p>";
+    return;
+  }
+
+  // Crop data with detailed info
+  const cropData = {
+  rice: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: May - June; Harvest: November - December", tips: "Rice needs flooded fields (paddies) and abundant water for optimal growth." },
+  wheat: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "15-20°C", development_timetable: "Sowing: September - November; Harvest: June - August", tips: "Wheat grows best in well-drained soil with moderate rainfall." },
+  maize: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: April - May; Harvest: August - October", tips: "Maize requires full sun and well-drained soil with regular watering." },
+  barley: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "12-20°C", development_timetable: "Sowing: March - April; Harvest: July - August", tips: "Barley thrives in well-drained soil with moderate rainfall." },
+  potatoes: { lifespan: "Annual", growing_season: "Cool season (spring to early summer)", ideal_temperature: "15-20°C", development_timetable: "Sowing: March - April; Harvest: July - September", tips: "Potatoes prefer loose, well-drained soil and consistent moisture." },
+  tomatoes: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: February - March; Harvest: June - September", tips: "Tomatoes need plenty of sunlight, well-drained soil, and support like stakes or cages." },
+  carrots: { lifespan: "Annual", growing_season: "Cool season (spring to fall)", ideal_temperature: "10-20°C", development_timetable: "Sowing: March - June; Harvest: June - November", tips: "Carrots grow best in loose, sandy soil without rocks to prevent deformities." },
+  bananas: { lifespan: "Perennial", growing_season: "Tropical (year-round)", ideal_temperature: "26-30°C", development_timetable: "Planting: Year-round; Harvest: 9-12 months after planting", tips: "Bananas need warm temperatures, high humidity, and well-drained soil." },
+  apples: { lifespan: "Perennial", growing_season: "Temperate (spring to fall)", ideal_temperature: "15-25°C", development_timetable: "Planting: Spring; Harvest: August - October", tips: "Apples require chilling hours, good air circulation, and well-drained soil." },
+  grapes: { lifespan: "Perennial", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Planting: Spring; Harvest: August - September", tips: "Grapes thrive in full sun and well-drained soil with regular pruning." },
+  oranges: { lifespan: "Perennial", growing_season: "Tropical/Subtropical (year-round)", ideal_temperature: "20-30°C", development_timetable: "Planting: Year-round; Harvest: November - June", tips: "Oranges need full sun, well-drained soil, and regular watering." },
+  strawberries: { lifespan: "Perennial", growing_season: "Cool season (spring to early summer)", ideal_temperature: "15-25°C", development_timetable: "Planting: Early spring; Harvest: Late spring to early summer", tips: "Strawberries prefer well-drained, acidic soil and plenty of sunlight." },
+  lentils: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "15-20°C", development_timetable: "Sowing: March - April; Harvest: July - August", tips: "Lentils thrive in well-drained soil and need minimal fertilization." },
+  chickpeas: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: March - April; Harvest: July - August", tips: "Chickpeas prefer well-drained soil and are drought-tolerant." },
+  peanuts: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "25-30°C", development_timetable: "Sowing: April - May; Harvest: September - October", tips: "Peanuts require sandy, well-drained soil and full sun." },
+  flax: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "15-20°C", development_timetable: "Sowing: March - April; Harvest: July - August", tips: "Flax prefers well-drained soil and moderate watering." },
+  cotton: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "25-35°C", development_timetable: "Sowing: April - May; Harvest: September - October", tips: "Cotton requires full sun and well-drained, fertile soil." },
+  cocoa: { lifespan: "Perennial", growing_season: "Tropical (year-round)", ideal_temperature: "20-30°C", development_timetable: "Planting: Year-round; Harvest: 5 years after planting", tips: "Cocoa requires shaded, humid conditions with rich, well-drained soil." },
+  coffee: { lifespan: "Perennial", growing_season: "Tropical (year-round)", ideal_temperature: "18-24°C", development_timetable: "Planting: Year-round; Harvest: 3-4 years after planting", tips: "Coffee plants need partial shade, well-drained soil, and moderate rainfall." },
+  tea: { lifespan: "Perennial", growing_season: "Cool to warm season (year-round)", ideal_temperature: "20-30°C", development_timetable: "Planting: Year-round; Harvest: 3 years after planting", tips: "Tea plants prefer acidic soil, high humidity, and partial shade." },
+  sugarcane: { lifespan: "Perennial", growing_season: "Tropical (year-round)", ideal_temperature: "20-30°C", development_timetable: "Planting: Year-round; Harvest: 12-18 months after planting", tips: "Sugarcane needs warm temperatures, abundant water, and rich soil." },
+  sunflower: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: April - May; Harvest: August - September", tips: "Sunflowers require full sun and well-drained soil." },
+  soybean: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: April - May; Harvest: August - October", tips: "Soybeans thrive in well-drained, fertile soil with moderate rainfall." },
+  millet: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: April - May; Harvest: August - September", tips: "Millet requires minimal water and thrives in dry conditions." },
+  sorghum: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "25-35°C", development_timetable: "Sowing: May - June; Harvest: October - November", tips: "Sorghum is drought-tolerant and thrives in hot, dry climates." },
+  barley: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "12-20°C", development_timetable: "Sowing: March - April; Harvest: July - August", tips: "Barley thrives in well-drained soil with moderate rainfall." },
+  oats: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "10-20°C", development_timetable: "Sowing: March - April; Harvest: August - September", tips: "Oats prefer cool climates and well-drained soil." },
+  rye: { lifespan: "Annual", growing_season: "Cool season (spring to summer)", ideal_temperature: "10-20°C", development_timetable: "Sowing: September - November; Harvest: June - August", tips: "Rye is hardy and grows well in poor soil conditions." },
+  millet: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "20-30°C", development_timetable: "Sowing: April - May; Harvest: August - September", tips: "Millet requires minimal water and thrives in dry conditions." },
+  sorghum: { lifespan: "Annual", growing_season: "Warm season (summer)", ideal_temperature: "25-35°C", development_timetable: "Sowing: May - June; Harvest: October - November", tips: "Sorghum is drought-tolerant and thrives in hot, dry climates." },
+  };
+
+  const cropInfo = cropData[crop];
+
+  if (cropInfo) {
+    resultDiv.innerHTML = `
+      <h3>${crop.toUpperCase()} Information:</h3>
+      <ul>
+        <li><strong>Lifespan:</strong> ${cropInfo.lifespan}</li>
+        <li><strong>Growing Season:</strong> ${cropInfo.growing_season}</li>
+        <li><strong>Ideal Temperature:</strong> ${cropInfo.ideal_temperature}</li>
+        <li><strong>Development Timetable:</strong> ${cropInfo.development_timetable}</li>
+        <li><strong>Tips:</strong> ${cropInfo.tips}</li>
+      </ul>
+    `;
+  } else {
+    resultDiv.innerHTML = `<p>Sorry, we don’t have information on <strong>${crop}</strong> yet. Try another crop.</p>`;
+  }
+}
+// disease detection
+async function analyzeImage() {
+    const input = document.getElementById('imageInput');
+    const resultLabel = document.getElementById('resultLabel');
+
+    if (!input.files.length) {
+        alert('Please upload an image.');
+        return;
+    }
+
+    const file = input.files[0];
+    const reader = new FileReader();
+
+    reader.onload = async function(event) {
+        const base64Image = event.target.result.split(',')[1];
+        const apiKey = 'NH7PqPUb02RCg7D4Nm7ijUKQFyRiys2NkhO4HfIM1Gw0I08H3R';  // Replace with secure key handling
+
+        try {
+            const response = await fetch('https://plant.id/api/v3', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ images: [base64Image], api_key: apiKey })
+            });
+
+            if (!response.ok) throw new Error('API request failed.');
+
+            const data = await response.json();
+            const plantName = data.suggestions?.[0]?.plant_name || 'Could not identify';
+
+            // Display the result in the label
+            resultLabel.textContent = `Identified Plant: ${plantName}`;
+        } catch (error) {
+            console.error(error);
+            resultLabel.textContent = 'Error identifying plant. Please try again.';
+        }
+    };
+
+    reader.readAsDataURL(file);
+}
+
+//
+
+    // Handle contact form submission (dummy function)
+    function submitForm(event) {
+      event.preventDefault();
+      alert("Thanks for reaching out! We'll get back to you soon.");
+      document.getElementById('name').value = "";
+      document.getElementById('email').value = "";
+      document.getElementById('message').value = "";
+    }
+    
+  </script>
+</body>
+</html>
