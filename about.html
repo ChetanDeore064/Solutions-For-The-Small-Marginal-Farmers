@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us | Empowering the Small and Marginal Farmer with AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mist:#EEF3E6; --paddy:#1F5B3A; --leaf:#3E8E4F; --turmeric:#E8A317;
+  --soil:#4A3220; --ink:#1B2A21; --card:#FFFFFF; --muted:#52634F;
+  --shadow:rgba(31,60,40,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --mist:#0F1A14; --paddy:#7BC98F; --leaf:#4FA866; --turmeric:#F2B63A;
+    --soil:#C9A27A; --ink:#E7F0E4; --card:#17261D; --muted:#9DB5A0; --shadow:rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Hind',system-ui,sans-serif;background:var(--mist);color:var(--ink);
+  line-height:1.65;font-size:18px;overflow-x:hidden;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--turmeric);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.25rem;text-decoration:none;color:var(--paddy)}
+nav ul{display:flex;gap:26px;list-style:none;font-weight:500;font-size:.95rem}
+nav a{text-decoration:none}
+nav a:hover{color:var(--leaf)}
+@media(max-width:640px){nav ul{display:none}}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:40px 0 70px}
+.hero h1{font-size:clamp(2.4rem,5.4vw,4.2rem);font-weight:800;color:var(--paddy)}
+.hero p{margin:22px 0 30px;max-width:46ch;color:var(--muted);font-size:1.1rem}
+.btn{display:inline-block;padding:14px 28px;border-radius:14px;background:var(--turmeric);color:#2a1d05;
+  font-weight:600;text-decoration:none;box-shadow:0 6px 0 #aca8a0,0 14px 24px var(--shadow);
+  transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(3px);box-shadow:0 3px 0 #b57c06,0 8px 14px var(--shadow)}
+.btn:active{transform:translateY(6px);box-shadow:0 0 0 #b57c06}
+.btn.ghost{background:transparent;color:var(--paddy);box-shadow:inset 0 0 0 2px var(--paddy);margin-left:12px}
+.btn.ghost:hover{transform:none;box-shadow:inset 0 0 0 2px var(--paddy),0 8px 16px var(--shadow)}
+
+.scene{position:relative;height:440px;perspective:1100px}
+.stage{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .2s ease-out;
+  transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.field{
+  position:absolute;left:50%;top:50%;width:380px;height:380px;margin:-190px 0 0 -190px;
+  transform:rotateX(62deg) rotateZ(-28deg);transform-style:preserve-3d;border-radius:14px;
+  background:
+    repeating-linear-gradient(90deg,var(--leaf) 0 22px,var(--paddy) 22px 30px,var(--soil) 30px 44px);
+  box-shadow:1px 1px 0 #3a2616,2px 2px 0 #3a2616,3px 3px 0 #3a2616,4px 4px 0 #3a2616,5px 5px 0 #3a2616,
+    6px 6px 0 #3a2616,7px 7px 0 #3a2616,8px 8px 0 #3a2616,9px 9px 0 #3a2616,10px 10px 0 #3a2616,
+    11px 11px 0 #3a2616,12px 12px 0 #3a2616,30px 40px 50px var(--shadow);
+}
+.chip{position:absolute;background:var(--card);border-radius:16px;padding:14px 18px;font-size:.9rem;line-height:1.35;
+  box-shadow:0 18px 30px var(--shadow);transform-style:preserve-3d}
+.chip b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:1.35rem;color:var(--paddy)}
+.chip.a{left:2%;top:8%;transform:translateZ(110px);animation:bob 5s ease-in-out infinite}
+.chip.b{right:0;top:34%;transform:translateZ(150px);animation:bob 6s ease-in-out -2s infinite}
+.chip.c{left:12%;bottom:6%;transform:translateZ(90px);animation:bob 5.5s ease-in-out -1s infinite}
+@keyframes bob{50%{translate:0 -12px}}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.scene{height:380px}}
+
+/* HEADINGS */
+.head{max-width:640px;margin-bottom:48px}
+.head h2{font-size:clamp(1.9rem,3.6vw,2.8rem);color:var(--paddy)}
+.head p{margin-top:14px;color:var(--muted)}
+
+/* STORY */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story p+p{margin-top:16px}
+.slab{perspective:900px}
+.slab-in{background:var(--paddy);color:#F3F8EE;border-radius:22px;padding:38px;transform:rotateY(-12deg) rotateX(4deg);
+  box-shadow:-18px 22px 0 var(--turmeric),-30px 40px 50px var(--shadow);transition:transform .4s}
+.slab:hover .slab-in{transform:rotateY(0) rotateX(0)}
+.slab-in h3{font-size:2.6rem;color:var(--turmeric)}
+.slab-in p{margin-top:8px;font-size:1rem}
+@media(max-width:860px){.story{grid-template-columns:1fr}}
+
+/* TILT CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px;perspective:1000px}
+.tilt{background:var(--card);border-radius:20px;padding:30px 26px;box-shadow:0 14px 30px var(--shadow);
+  transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .2s;
+  transform:rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg))}
+.tilt .ico{font-size:2.4rem;display:block;transform:translateZ(50px);margin-bottom:12px}
+.tilt h3{font-size:1.3rem;color:var(--paddy);transform:translateZ(30px);margin-bottom:8px}
+.tilt p{font-size:.98rem;color:var(--muted);transform:translateZ(14px)}
+
+/* CUBE */
+.values{background:var(--paddy);color:#F3F8EE}
+.values .head h2{color:#F3F8EE}.values .head p{color:#C6DCC9}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.cube-wrap{height:300px;display:grid;place-items:center;perspective:900px}
+.cube{width:200px;height:200px;position:relative;transform-style:preserve-3d;animation:spin 18s linear infinite}
+.cube-wrap:hover .cube{animation-play-state:paused}
+.face{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:16px;
+  background:var(--turmeric);color:#2a1d05;border:3px solid #2a1d05;border-radius:14px;
+  font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.25rem}
+.face small{display:block;font-family:'Hind',sans-serif;font-weight:500;font-size:.82rem;margin-top:6px}
+.face:nth-child(1){transform:rotateY(0) translateZ(100px)}
+.face:nth-child(2){transform:rotateY(90deg) translateZ(100px)}
+.face:nth-child(3){transform:rotateY(180deg) translateZ(100px)}
+.face:nth-child(4){transform:rotateY(270deg) translateZ(100px)}
+@keyframes spin{to{transform:rotateX(-14deg) rotateY(360deg)}}
+.vlist{list-style:none;display:grid;gap:18px}
+.vlist li{padding-left:20px;border-left:4px solid var(--turmeric)}
+.vlist b{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem}
+@media(max-width:860px){.vgrid{grid-template-columns:1fr}}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.stat{background:var(--card);border-radius:18px;padding:28px;text-align:center;
+  box-shadow:0 8px 0 var(--leaf),0 22px 30px var(--shadow);transition:transform .2s}
+.stat:hover{transform:translateY(-6px) rotateX(8deg)}
+.stat b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:2.8rem;color:var(--paddy)}
+.stat span{color:var(--muted);font-size:.95rem}
+
+/* TEAM */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:26px;perspective:1000px}
+.member{text-align:center}
+.avatar{width:120px;height:120px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+  font-family:'Bricolage Grotesque',sans-serif;font-size:2.2rem;font-weight:800;color:#fff;
+  background:radial-gradient(circle at 30% 28%,var(--leaf),var(--paddy));
+  box-shadow:inset -10px -12px 18px rgba(0,0,0,.28),0 16px 24px var(--shadow)}
+.member h3{font-size:1.1rem}
+.member p{font-size:.9rem;color:var(--muted)}
+
+/* CTA */
+.cta{text-align:center}
+.cta-box{background:var(--card);border-radius:28px;padding:64px 28px;transform:perspective(1000px) rotateX(3deg);
+  box-shadow:0 14px 0 var(--turmeric),0 34px 50px var(--shadow)}
+.cta h2{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--paddy);max-width:20ch;margin:0 auto 14px}
+.cta p{color:var(--muted);max-width:50ch;margin:0 auto 28px}
+
+footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.9rem}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="logo" href="#">Farming Solutions</a>
+    <ul><li><a href="#story">Our story</a></li><li><a href="#work">What we do</a></li><li><a href="#values">Values</a></li><li><a href="#team">Team</a></li></ul>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <h1>Smart farming advice, built for the farmer with two acres.</h1>
+      <p>We use AI to give small and marginal farmers the same quality of guidance that large farms pay experts for: what to sow, when to water, and where to sell, in their own language and on a basic phone.</p>
+      <a class="btn" href="#work">See how it works</a><a class="btn ghost" href="#contact">Partner with us</a>
+    </div>
+    <div class="scene" id="scene" aria-hidden="true">
+      <div class="stage" id="stage">
+        <div class="field"></div>
+        <div class="chip a"><b>Water in 2 days</b>Soil moisture is low</div>
+        <div class="chip b"><b>Sell on Friday</b>Mandi price rising</div>
+        <div class="chip c"><b>Leaf spot found</b>Photo check, treat early</div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<section id="story">
+  <div class="wrap story">
+    <div>
+      <div class="head" style="margin-bottom:24px"><h2>Why we started</h2></div>
+      <p>Most farmers in India work less than two hectares. They decide on seed, water and sale price with little data, and one bad guess can cost a whole season.</p>
+      <p>Advice, weather data and market prices exist, but they rarely reach these farmers in a form they can use. We built our tools to close that gap, working alongside farmers rather than just for them.</p>
+    </div>
+    <div class="slab"><div class="slab-in">
+      <h3>86%</h3>
+      <p>of Indian farmers are small or marginal. Replace this figure with your own verified data and source.</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head"><h2>What we do</h2><p>Four tools, each solving one problem a farmer faces every season.</p></div>
+    <div class="cards">
+      <article class="tilt"><span class="ico">🌱</span><h3>Crop advice</h3><p>Suggests crops and varieties that suit your soil, rainfall and budget.</p></article>
+      <article class="tilt"><span class="ico">🔍</span><h3>Disease detection</h3><p>Take a photo of a leaf. Get the likely problem and a low-cost treatment.</p></article>
+      <article class="tilt"><span class="ico">💧</span><h3>Water and weather alerts</h3><p>Plain messages on when to irrigate, spray or harvest, sent by SMS or voice.</p></article>
+      <article class="tilt"><span class="ico">📈</span><h3>Market prices</h3><p>Shows nearby mandi rates so you can choose when and where to sell.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="values" id="values">
+  <div class="wrap vgrid">
+    <div>
+      <div class="head" style="margin-bottom:30px"><h2>What we stand for</h2><p>Technology only helps if a farmer can trust it and use it.</p></div>
+      <ul class="vlist">
+        <li><b>Simple</b><br>Voice, local languages and low-end phones come first.</li>
+        <li><b>Local</b><br>Advice is based on your village's weather and soil.</li>
+        <li><b>Affordable</b><br>Free or low-cost for the farmers who need it most.</li>
+        <li><b>Trustworthy</b><br>Farmers own their data, and we never sell it.</li>
+      </ul>
+    </div>
+    <div class="cube-wrap" aria-hidden="true">
+      <div class="cube">
+        <div class="face">Simple<small>Voice first</small></div>
+        <div class="face">Local<small>Your village</small></div>
+        <div class="face">Affordable<small>Within reach</small></div>
+        <div class="face">Trustworthy<small>Your data</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><h2>Our impact so far</h2><p>Replace these placeholder numbers with your real results.</p></div>
+    <div class="stats" style="perspective:900px">
+      <div class="stat"><b>5,000+</b><span>farmers reached</span></div>
+      <div class="stat"><b>120</b><span>villages covered</span></div>
+      <div class="stat"><b>18%</b><span>average yield gain</span></div>
+      <div class="stat"><b>9</b><span>languages supported</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="head"><h2>The people behind it</h2></div>
+    <div class="team">
+      <div class="member"><div class="avatar">A</div><h3>Name Surname</h3><p>Founder, AI lead</p></div>
+      <div class="member"><div class="avatar">B</div><h3>Name Surname</h3><p>Agronomy advisor</p></div>
+      <div class="member"><div class="avatar">C</div><h3>Name Surname</h3><p>Field coordinator</p></div>
+      <div class="member"><div class="avatar">D</div><h3>Name Surname</h3><p>Software engineer</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Help us reach the next thousand farmers.</h2>
+      <p>We work with farmer groups, NGOs, agri-universities and local governments. Get in touch to pilot the tools in your area.</p>
+      <a class="btn" href="mailto:hello@example.com">Email our team</a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 Your Project Name. Built with farmers, for farmers.</div></footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  // Hero parallax
+  var scene = document.getElementById('scene'), stage = document.getElementById('stage');
+  scene.parentElement.addEventListener('mousemove', function(e){
+    var r = scene.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    stage.style.setProperty('--ry', (x * 22) + 'deg');
+    stage.style.setProperty('--rx', (-y * 16) + 'deg');
+  });
+  scene.parentElement.addEventListener('mouseleave', function(){
+    stage.style.setProperty('--rx','0deg'); stage.style.setProperty('--ry','0deg');
+  });
+  // Card tilt
+  document.querySelectorAll('.tilt').forEach(function(c){
+    c.addEventListener('mousemove', function(e){
+      var r = c.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      c.style.setProperty('--ty', (x * 18) + 'deg');
+      c.style.setProperty('--tx', (-y * 18) + 'deg');
+    });
+    c.addEventListener('mouseleave', function(){
+      c.style.setProperty('--tx','0deg'); c.style.setProperty('--ty','0deg');
+    });
+  });
+})();
+</script>
+</body>
+</html>
